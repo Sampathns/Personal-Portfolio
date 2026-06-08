@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nirmala Sampath — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #0a0a0f; --surface: #111118; --card: #16161f;
+      --border: rgba(255,255,255,0.07); --text: #f0eff8; --muted: #7a798a;
+      --accent: #7c6fff; --accent2: #ff6b9d; --teal: #4dffd2;
+      --font-head: 'Syne', sans-serif; --font-body: 'DM Sans', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-body); font-weight: 300; line-height: 1.7; overflow-x: hidden; }
+
+    .orb { position: fixed; border-radius: 50%; filter: blur(90px); pointer-events: none; opacity: 0.14; z-index: 0; }
+    .orb1 { width: 600px; height: 600px; background: var(--accent); top: -150px; right: -150px; }
+    .orb2 { width: 500px; height: 500px; background: var(--accent2); bottom: -100px; left: -150px; }
+    .orb3 { width: 350px; height: 350px; background: var(--teal); top: 45%; left: 40%; transform: translate(-50%,-50%); }
+
+    nav { position: sticky; top: 0; z-index: 100; padding: 1.2rem 2.5rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); backdrop-filter: blur(24px); background: rgba(10,10,15,0.75); }
+    .logo { font-family: var(--font-head); font-weight: 800; font-size: 1.2rem; letter-spacing: -0.5px; }
+    .logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.82rem; letter-spacing: 0.6px; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+
+    /* Hero */
+    .hero { position: relative; z-index: 1; min-height: 92vh; display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 4rem; padding: 4rem 2.5rem; max-width: 1100px; }
+    .hero-content { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .hero-image-wrap {
+      flex-shrink: 0;
+      width: 320px; height: 400px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 3px solid rgba(124,111,255,0.5);
+      box-shadow: 0 0 60px rgba(124,111,255,0.25), 0 0 0 8px rgba(124,111,255,0.08);
+      align-self: center;
+    }
+    .hero-image-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--border); border-radius: 100px; padding: 6px 16px; font-size: 0.75rem; color: var(--muted); margin-bottom: 2.5rem; width: fit-content; }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal); animation: pulse 2.2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.75)} }
+
+    h1 { font-family: var(--font-head); font-size: clamp(2.2rem, 7vw, 5rem); font-weight: 800; line-height: 1.05; letter-spacing: -2px; margin-bottom: 0.4rem; }
+    h1 em { font-style: normal; color: transparent; -webkit-text-stroke: 1.5px var(--accent); }
+
+    .hero-sub { font-size: 1.1rem; color: var(--muted); max-width: 500px; margin: 1.75rem 0 2.5rem; font-weight: 300; line-height: 1.85; }
+    .hero-sub strong { color: var(--text); font-weight: 400; }
+
+    .cta-row { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+    .btn-primary { background: var(--accent); color: #fff; border: none; padding: 14px 28px; border-radius: 9px; font-family: var(--font-body); font-size: 0.9rem; font-weight: 400; cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.2s; }
+    .btn-primary:hover { background: #6a5cff; transform: translateY(-2px); }
+    .btn-ghost { color: var(--muted); border: 1px solid var(--border); padding: 13px 24px; border-radius: 9px; font-family: var(--font-body); font-size: 0.9rem; cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.2s; background: transparent; }
+    .btn-ghost:hover { color: var(--text); border-color: rgba(255,255,255,0.22); }
+
+    .stats-row { display: flex; gap: 3.5rem; margin-top: 4.5rem; padding-top: 3rem; border-top: 1px solid var(--border); }
+    .stat-num { font-family: var(--font-head); font-size: 2.2rem; font-weight: 800; }
+    .stat-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1.2px; margin-top: 4px; }
+
+    section { position: relative; z-index: 1; padding: 5.5rem 2.5rem; }
+    .section-label { display: flex; align-items: center; gap: 12px; margin-bottom: 2rem; }
+    .section-tag { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 2.5px; color: var(--accent); font-family: var(--font-head); font-weight: 700; }
+    .section-line { height: 1px; width: 160px; background: linear-gradient(to right, var(--border), transparent); }
+    .section-title { font-family: var(--font-head); font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -1.5px; margin-bottom: 1rem; }
+    .section-desc { color: var(--muted); max-width: 480px; font-size: 0.95rem; margin-bottom: 0.5rem; }
+
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+    .project-card { background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 2rem; transition: all 0.3s; position: relative; overflow: hidden; }
+    .project-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg,rgba(124,111,255,0.07),transparent); opacity: 0; transition: opacity 0.3s; }
+    .project-card:hover { border-color: rgba(124,111,255,0.3); transform: translateY(-4px); }
+    .project-card:hover::before { opacity: 1; }
+
+    .project-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+    .project-icon { width: 50px; height: 50px; border-radius: 13px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+    .icon-health { background: rgba(77,255,210,0.1); border: 1px solid rgba(77,255,210,0.2); }
+    .icon-spam  { background: rgba(255,107,157,0.1); border: 1px solid rgba(255,107,157,0.2); }
+
+    .project-links { display: flex; gap: 8px; }
+    .proj-link { width: 34px; height: 34px; border-radius: 9px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--muted); text-decoration: none; transition: all 0.2s; font-size: 15px; }
+    .proj-link:hover { color: var(--text); border-color: rgba(255,255,255,0.22); background: rgba(255,255,255,0.05); }
+
+    .project-title { font-family: var(--font-head); font-size: 1.25rem; font-weight: 700; margin-bottom: 0.7rem; letter-spacing: -0.5px; }
+    .project-desc { color: var(--muted); font-size: 0.88rem; line-height: 1.75; margin-bottom: 1.5rem; }
+
+    .tech-stack { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tech-tag { font-size: 0.7rem; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; color: var(--muted); letter-spacing: 0.3px; text-transform: uppercase; }
+    .tech-tag.accent { background: rgba(124,111,255,0.1); border-color: rgba(124,111,255,0.25); color: #a89fff; }
+    .tech-tag.teal   { background: rgba(77,255,210,0.08); border-color: rgba(77,255,210,0.2); color: #4dffd2; }
+    .tech-tag.pink   { background: rgba(255,107,157,0.08); border-color: rgba(255,107,157,0.2); color: #ff8db8; }
+
+    .skills-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 2.5rem; }
+    .skill-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; transition: border-color 0.2s; }
+    .skill-card:hover { border-color: rgba(124,111,255,0.28); }
+    .skill-cat { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); margin-bottom: 0.85rem; font-family: var(--font-head); font-weight: 700; }
+    .skill-list { display: flex; flex-wrap: wrap; gap: 6px; }
+    .skill-pill { font-size: 0.78rem; color: var(--muted); background: rgba(255,255,255,0.04); border-radius: 6px; padding: 3px 10px; border: 1px solid var(--border); }
+
+    .contact-section { text-align: center; }
+    .contact-inner { max-width: 580px; margin: 0 auto; }
+    .contact-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 3.5rem 2rem; margin: 2rem auto 0; position: relative; overflow: hidden; }
+    .contact-card::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at center,rgba(124,111,255,0.06),transparent 60%); pointer-events: none; }
+    .contact-card p { color: var(--muted); font-size: 0.92rem; position: relative; }
+    .contact-email { font-family: var(--font-head); font-size: 1.3rem; font-weight: 700; color: var(--accent); margin: 1.5rem 0; letter-spacing: -0.5px; position: relative; }
+    .social-row { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem; position: relative; }
+    .social-btn { display: flex; align-items: center; gap: 8px; padding: 11px 22px; border: 1px solid var(--border); border-radius: 10px; color: var(--muted); text-decoration: none; font-size: 0.85rem; transition: all 0.2s; background: rgba(255,255,255,0.02); }
+    .social-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.22); background: rgba(255,255,255,0.06); }
+
+    footer { position: relative; z-index: 1; padding: 2rem 2.5rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; color: var(--muted); font-size: 0.78rem; }
+
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 700px) {
+      .hero { flex-direction: column-reverse; align-items: center; text-align: center; padding: 3rem 1.25rem; }
+      .hero-image-wrap { width: 240px; height: 300px; border-radius: 20px; }
+      .hero-badge { margin: 0 auto 2rem; }
+      .cta-row { justify-content: center; }
+      .stats-row { gap: 2rem; justify-content: center; }
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { gap: 1.2rem; }
+      section { padding: 4rem 1.25rem; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+
+  <nav>
+    <div class="logo">N<span>.</span>S</div>
+    <div class="nav-links">
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge"><span class="badge-dot"></span> Available for opportunities</div>
+      <h1>Hi, I am<br><em>Nirmala Sampath</em></h1>
+      <p class="hero-sub">
+        I build <strong>full-stack web applications</strong> — from responsive frontends to robust
+        backends and cloud deployments — turning ideas into production-ready products.
+      </p>
+      <div class="cta-row">
+        <a href="#projects" class="btn-primary">View Projects</a>
+        <a href="#contact" class="btn-ghost">Get in Touch</a>
+      </div>
+      <div class="stats-row">
+        <div><div class="stat-num">2+</div><div class="stat-label">Projects</div></div>
+        <div><div class="stat-num">FS</div><div class="stat-label">Full-Stack</div></div>
+        <div><div class="stat-num">∞</div><div class="stat-label">Curiosity</div></div>
+      </div>
+    </div>
+    <div class="hero-image-wrap">
+      <img src="profile.jpg" alt="Nirmala Sampath" />
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-label"><span class="section-tag">Featured Work</span><div class="section-line"></div></div>
+    <h2 class="section-title">Projects</h2>
+    <p class="section-desc">Full-stack applications built end-to-end — frontend, backend, AI integration, and deployment.</p>
+    <div class="projects-grid">
+
+      <div class="project-card fade-in">
+        <div class="project-top">
+          <div class="project-icon icon-health">🏥</div>
+          <div class="project-links">
+            <a href="https://github.com/Sampathns/HealthChat-Application-" class="proj-link" title="GitHub" target="_blank" rel="noopener"><i class="ti ti-brand-github"></i></a>
+            <a href="https://github.com/Sampathns/HealthChat-Application-" class="proj-link" title="View" target="_blank" rel="noopener"><i class="ti ti-external-link"></i></a>
+          </div>
+        </div>
+        <div class="project-title">HealthChat Application</div>
+        <p class="project-desc">An AI-powered health chat platform enabling intelligent medical Q&amp;A conversations. Leverages NLP to provide reliable health information and assist users with symptom analysis and wellness guidance in real time.</p>
+        <div class="tech-stack">
+          <span class="tech-tag teal">Python</span>
+          <span class="tech-tag accent">Flask</span>
+          <span class="tech-tag teal">React</span>
+          <span class="tech-tag">REST API</span>
+          <span class="tech-tag accent">NLP / AI</span>
+          <span class="tech-tag">MySQL</span>
+        </div>
+      </div>
+
+      <div class="project-card fade-in">
+        <div class="project-top">
+          <div class="project-icon icon-spam">🛡️</div>
+          <div class="project-links">
+            <a href="https://github.com/Sampathns/AI-Email-Spam-Detector" class="proj-link" title="GitHub" target="_blank" rel="noopener"><i class="ti ti-brand-github"></i></a>
+            <a href="https://github.com/Sampathns/AI-Email-Spam-Detector" class="proj-link" title="View" target="_blank" rel="noopener"><i class="ti ti-external-link"></i></a>
+          </div>
+        </div>
+        <div class="project-title">AI Email Spam Detector</div>
+        <p class="project-desc">A machine learning classifier that distinguishes spam from legitimate emails with high accuracy. Built with TF-IDF vectorization and Naive Bayes models, featuring a clean web interface for real-time classification.</p>
+        <div class="tech-stack">
+          <span class="tech-tag pink">Python</span>
+          <span class="tech-tag accent">Flask</span>
+          <span class="tech-tag pink">scikit-learn</span>
+          <span class="tech-tag">TF-IDF</span>
+          <span class="tech-tag accent">HTML / CSS / JS</span>
+          <span class="tech-tag">Render</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="skills-section">
+    <div class="section-label"><span class="section-tag">Expertise</span><div class="section-line"></div></div>
+    <h2 class="section-title">Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card fade-in">
+        <div class="skill-cat">Languages</div>
+        <div class="skill-list">
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">JavaScript</span>
+          <span class="skill-pill">SQL</span>
+          <span class="skill-pill">HTML / CSS</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-cat">Frontend</div>
+        <div class="skill-list">
+          <span class="skill-pill">React</span>
+          <span class="skill-pill">Tailwind CSS</span>
+          <span class="skill-pill">Responsive Design</span>
+          <span class="skill-pill">REST APIs</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-cat">Backend</div>
+        <div class="skill-list">
+          <span class="skill-pill">Flask</span>
+          <span class="skill-pill">Express.js</span>
+          <span class="skill-pill">Node.js</span>
+          <span class="skill-pill">MySQL</span>
+          <span class="skill-pill">MongoDB</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-cat">Tools &amp; Deploy</div>
+        <div class="skill-list">
+          <span class="skill-pill">Git</span>
+          <span class="skill-pill">GitHub</span>
+          <span class="skill-pill">Render</span>
+          <span class="skill-pill">VS Code</span>
+          <span class="skill-pill">Postman</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact-section">
+    <div class="contact-inner">
+      <div class="section-label" style="justify-content:center">
+        <span class="section-tag">Get in Touch</span>
+      </div>
+      <h2 class="section-title">Let's Connect</h2>
+      <div class="contact-card fade-in">
+        <p>Open to new projects, collaborations, and opportunities. Drop me a line anytime.</p>
+        <div class="contact-email">Nirmala Sampath · GitHub</div>
+        <div class="social-row">
+          <a href="https://github.com/Sampathns" class="social-btn" target="_blank" rel="noopener">
+            <i class="ti ti-brand-github" style="font-size:16px"></i> GitHub
+          </a>
+          <a href="mailto:your@email.com" class="social-btn">
+            <i class="ti ti-mail" style="font-size:16px"></i> Email Me
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Nirmala Sampath</span>
+    <span>Built with Node.js &amp; Express</span>
+  </footer>
+
+  <script>
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+  </script>
+
+</body>
+</html>
