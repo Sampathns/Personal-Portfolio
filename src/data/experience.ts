@@ -21,6 +21,6 @@ export const experiences: Experience[] = [
     duration: "2023 - 2024",
     description:
       "Developed responsive web applications and contributed to the company's design system. Improved page load times by 60%.",
-    techStack: ["React", "JavaScript", "MongoDB"],
+    techStack: ["Html", "CSS", "Javascript"],
   },
 ];
